@@ -145,11 +145,17 @@ public class WriteMemo extends Activity
 		outputBitmap(fileName, bitmap);
 
 		// 保存したパスをアクティビティに返す
-		String resultPath = (isExternal) ? Environment.getExternalStorageDirectory() + "/" + EXTERNAL_STORAGE_DIR + "/" + fileName : fileName;
+		String resultPath = (isExternal) ? EXTERNAL_STORAGE_DIR + "/" + fileName : fileName;
 		intent.putExtra("ImagePath", resultPath);
 		intent.putExtra("IsExternal", isExternal);
 		//setResult(RESULT_OK, intent);
 		finish();
+	}
+
+	// キャンバスをクリアする
+	public void onClickClearCanvas(View v)
+	{
+		drawSurfaceView.clearCanvas();
 	}
 
 	public void onClickRed(View v)

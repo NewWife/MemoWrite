@@ -59,13 +59,21 @@
         android:textSize="30dp" />
 
     <ImageButton
-        android:id="@+id/save_and_exit_button"
+        android:id="@+id/clear_canvas_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/color_condition_text_view"
+        android:onClick="onClickClearCanvas"
+        android:src="@android:drawable/ic_menu_delete"/>
+
+    <ImageButton
+        android:id="@+id/save_and_exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/clear_canvas_button"
         android:onClick="onClickSaveAndExitButton"
-        android:src="@android:drawable/ic_menu_save"
-        android:text="描画終了" />
+        android:src="@android:drawable/ic_menu_save"/>
 
 </RelativeLayout>

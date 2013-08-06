@@ -24,6 +24,8 @@ public class TestImageActivity extends Activity
 {
 	Bitmap bitmap;
 
+	private final String EXTERNAL_STORAGE_DIR = "WriteMemo";
+
 	//private static final int WIDTH = 300;
 	//private static final int HEIGHT = 300;
 
@@ -39,7 +41,7 @@ public class TestImageActivity extends Activity
 			if(isExternal)
 			{
 				File dir = Environment.getExternalStorageDirectory();
-				File appDir = new File(dir, "WriteMemo");
+				File appDir = new File(dir, EXTERNAL_STORAGE_DIR);
 				if(!appDir.exists()) appDir.mkdir();
 				File file = new File(appDir, fileName);
 				String path = file.getAbsolutePath();

@@ -33,16 +33,24 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class WriteMemo extends Activity
 {
+	private int selectColor;
+
+	private ColorPickerDialog mColorPickerDialog;
+	private FrameLayout colorPickerFrame;
+
 	private final String EXTERNAL_STORAGE_DIR = "WriteMemo";
+	private final int STROKE_WIDTH = 6;
+	private final int ERASE_WIDTH = 100;
 
 	private DrawSurfaceView drawSurfaceView;
-	private TextView colorConditionTextView;
+
 
 	private boolean isExternal;
 
@@ -53,7 +61,19 @@ public class WriteMemo extends Activity
 
 		setContentView(R.layout.activity_write_memo);
 		drawSurfaceView = (DrawSurfaceView)findViewById(R.id.draw_surface_view);
-		colorConditionTextView = (TextView)findViewById(R.id.color_condition_text_view);
+		colorPickerFrame = (FrameLayout)findViewById(R.id.color_picker_frame);
+
+		mColorPickerDialog = new ColorPickerDialog(this,
+				new ColorPickerDialog.OnColorChangedListener() {
+			@Override
+			public void colorChanged(int color)
+			{
+				selectColor = color;
+				drawSurfaceView.setColor(selectColor, STROKE_WIDTH);
+				colorPickerFrame.setBackgroundColor(selectColor);
+			}
+		},
+		Color.BLACK);
 
 		// インテントの値を取得
 		//Intent intent = getIntent();
@@ -108,32 +128,6 @@ public class WriteMemo extends Activity
 		Log.i("WriteMemo", "Complete Bitmap File Output");
 	}
 
-//	private Bitmap debugLoad(String path)
-//	{
-//		Bitmap bitmap = null;
-//		InputStream input = null;
-//		try
-//		{
-//			input = openFileInput(path);
-//			bitmap = BitmapFactory.decodeStream(input);
-//			input.close();
-//		}
-//		catch (Exception e)
-//		{
-//			Log.i("WriteMemo", e.getMessage());
-//			System.exit(-1);
-//		}
-//		return bitmap;
-//	}
-//
-//	private void debugConfirmImage(String fileName)
-//	{
-//		Intent intent = new Intent(getApplicationContext(), TestImageActivity.class);
-//		intent.putExtra("FileName", fileName);
-//		intent.putExtra("IsExternal", isExternal);
-//		startActivity(intent);
-//	}
-
 	// 描画の終了とアクティビティの終了し、結果を返す
 	public void onClickSaveAndExitButton(View v)
 	{
@@ -158,27 +152,19 @@ public class WriteMemo extends Activity
 		drawSurfaceView.clearCanvas();
 	}
 
-	public void onClickRed(View v)
+	/**
+	 * 消しゴムボタンが押された時
+	 */
+	public void onClickEraser(View v)
 	{
-		final int RED = Color.rgb(255, 0, 0);
-		drawSurfaceView.setColor(RED);
-		colorConditionTextView.setBackgroundColor(RED);
-		colorConditionTextView.setText("R");
+		drawSurfaceView.setColor(Color.WHITE, ERASE_WIDTH);
 	}
 
-	public void onClickGreen(View v)
+	/**
+	 * カラーピッカーボタンがクリックされた時
+	 */
+	public void onClickColorPicker(View v)
 	{
-		final int GREEN = Color.rgb(0, 255, 0);
-		drawSurfaceView.setColor(GREEN);
-		colorConditionTextView.setBackgroundColor(GREEN);
-		colorConditionTextView.setText("G");
-	}
-
-	public void onClickBlue(View v)
-	{
-		final int BLUE = Color.rgb(0, 0, 255);
-		drawSurfaceView.setColor(BLUE);
-		colorConditionTextView.setBackgroundColor(BLUE);
-		colorConditionTextView.setText("B");
+		mColorPickerDialog.show();
 	}
 }

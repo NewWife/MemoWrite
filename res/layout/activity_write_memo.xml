@@ -12,68 +12,51 @@
         android:id="@+id/draw_surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/color_red_button"
-        android:layout_alignParentTop="true"
-        android:layout_below="@+id/save_and_exit_button" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/color_red_button"
+    <FrameLayout
+        android:id="@+id/color_picker_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="#ff0000"
-        android:onClick="onClickRed"
-        android:text="R" />
+        android:background="#FF000000" >
+
+        <Button
+            android:id="@+id/color_picker_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/hsv"
+            android:onClick="onClickColorPicker" />
+    </FrameLayout>
 
     <Button
-        android:id="@+id/color_green_button"
+        android:id="@+id/eraser_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/color_red_button"
-        android:background="#00ff00"
-        android:onClick="onClickGreen"
-        android:text="G" />
+        android:layout_toRightOf="@id/color_picker_frame"
+        android:background="@android:drawable/radiobutton_off_background"
+        android:onClick="onClickEraser" />
 
     <Button
-        android:id="@+id/color_blue_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/color_green_button"
-        android:background="#0000ff"
-        android:onClick="onClickBlue"
-        android:text="B" />
-
-    <TextView
-        android:id="@+id/color_condition_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/color_blue_button"
-        android:background="#ff0000"
-        android:text="R"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="30dp" />
-
-    <ImageButton
         android:id="@+id/clear_canvas_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/color_condition_text_view"
-        android:onClick="onClickClearCanvas"
-        android:src="@android:drawable/ic_menu_delete"/>
+        android:layout_toRightOf="@id/eraser_button"
+        android:background="@android:drawable/ic_menu_delete"
+        android:onClick="onClickClearCanvas" />
 
-    <ImageButton
+    <Button
         android:id="@+id/save_and_exit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/clear_canvas_button"
-        android:onClick="onClickSaveAndExitButton"
-        android:src="@android:drawable/ic_menu_save"/>
+        android:layout_toRightOf="@id/clear_canvas_button"
+        android:background="@android:drawable/ic_menu_save"
+        android:onClick="onClickSaveAndExitButton" />
 
 </RelativeLayout>

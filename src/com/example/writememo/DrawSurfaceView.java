@@ -33,10 +33,6 @@ import android.view.View.OnTouchListener;
 public class DrawSurfaceView extends SurfaceView
 implements SurfaceHolder.Callback
 {
-	//ArrayList<Float> drawListX = new ArrayList<Float>();
-	//ArrayList<Float> drawListY = new ArrayList<Float>();
-	//private Path path = null;
-
 	private SurfaceHolder mHolder;
 	private Bitmap bitmap;
 
@@ -59,7 +55,7 @@ implements SurfaceHolder.Callback
 
 		// 線と色の設定
 		paint = new Paint();
-		paint.setColor(Color.RED);
+		paint.setColor(Color.BLACK);
 		paint.setAntiAlias(true);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(6);
@@ -145,23 +141,6 @@ implements SurfaceHolder.Callback
 		}
 	}
 
-//	public void drawAllLine()
-//	{
-//		Canvas canvas = mHolder.lockCanvas();
-//		if(bmpCanvas != null)
-//		{
-//			for(int i = 1; i < drawList.size(); ++i)
-//			{
-//				Point pp = drawList.get(i - 1);
-//				Point np = drawList.get(i);
-//				bmpCanvas.drawLine(pp.x, pp.y, np.x, np.y, paint);
-//			}
-//			canvas.drawBitmap(bitmap, 0, 0, null);
-//			mHolder.unlockCanvasAndPost(canvas);
-//			invalidate();
-//		}
-//	}
-
 	public void clearCanvas()
 	{
 		bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
@@ -198,9 +177,12 @@ implements SurfaceHolder.Callback
 	}
 
 	// 色を設定する
-	public void setColor(int color)
+	public void setColor(int color, int width)
 	{
 		paint.setColor(color);
+		paint.setStrokeWidth(width);
 		Log.i("MemoWrite", Integer.toString(color));
 	}
+
+
 }

@@ -183,6 +183,4 @@ implements SurfaceHolder.Callback
 		paint.setStrokeWidth(width);
 		Log.i("MemoWrite", Integer.toString(color));
 	}
-
-
 }

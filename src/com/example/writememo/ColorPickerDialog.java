@@ -305,7 +305,8 @@ public class ColorPickerDialog extends Dialog {
     }
 
 
-    public ColorPickerDialog(Context context, OnColorChangedListener listener, int initialColor) {
+    public ColorPickerDialog(Context context, OnColorChangedListener listener, int initialColor)
+    {
     	super(context);
     	mListener = listener;
     	mInitialColor = initialColor;
@@ -313,7 +314,8 @@ public class ColorPickerDialog extends Dialog {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OnColorChangedListener l = new OnColorChangedListener() {
+        OnColorChangedListener l = new OnColorChangedListener()
+        {
             public void colorChanged(int color) {
                 mListener.colorChanged(color);
                 dismiss();

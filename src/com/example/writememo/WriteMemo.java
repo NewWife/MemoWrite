@@ -18,6 +18,7 @@ import android.os.Environment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Color;
@@ -45,6 +46,11 @@ public class WriteMemo extends Activity
 	private ColorPickerDialog mColorPickerDialog;
 	private FrameLayout colorPickerFrame;
 
+	private Button blackButton;
+	private Button redButton;
+	private Button greenButton;
+	private Button blueButton;
+
 	private final String EXTERNAL_STORAGE_DIR = "WriteMemo";
 	private final int STROKE_WIDTH = 6;
 	private final int ERASE_WIDTH = 100;
@@ -62,6 +68,10 @@ public class WriteMemo extends Activity
 		setContentView(R.layout.activity_write_memo);
 		drawSurfaceView = (DrawSurfaceView)findViewById(R.id.draw_surface_view);
 		colorPickerFrame = (FrameLayout)findViewById(R.id.color_picker_frame);
+		blackButton = (Button)findViewById(R.id.black_color_button);
+		redButton = (Button)findViewById(R.id.red_color_button);
+		greenButton = (Button)findViewById(R.id.green_color_button);
+		blueButton = (Button)findViewById(R.id.blue_color_button);
 
 		mColorPickerDialog = new ColorPickerDialog(this,
 				new ColorPickerDialog.OnColorChangedListener() {
@@ -69,6 +79,7 @@ public class WriteMemo extends Activity
 			public void colorChanged(int color)
 			{
 				selectColor = color;
+				allButtonImageUnselected();
 				drawSurfaceView.setColor(selectColor, STROKE_WIDTH);
 				colorPickerFrame.setBackgroundColor(selectColor);
 			}
@@ -144,6 +155,50 @@ public class WriteMemo extends Activity
 		intent.putExtra("IsExternal", isExternal);
 		//setResult(RESULT_OK, intent);
 		finish();
+	}
+
+	private void allButtonImageUnselected()
+	{
+		blackButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.black_unselected_alpha));
+		redButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.red_unselected_alpha));
+		greenButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_unselected_alpha));
+		blueButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_unselected_alpha));
+	}
+
+	// 黒をクリックしたら
+	public void onClickBlack(View v)
+	{
+		allButtonImageUnselected();
+		blackButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.black_selected_alpha));
+		drawSurfaceView.setColor(Color.BLACK, STROKE_WIDTH);
+		colorPickerFrame.setBackgroundColor(Color.BLACK);
+	}
+
+	// 黒をクリックしたら
+	public void onClickRed(View v)
+	{
+		allButtonImageUnselected();
+		redButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.red_selected_alpha));
+		drawSurfaceView.setColor(0xffe88c82, STROKE_WIDTH);
+		colorPickerFrame.setBackgroundColor(0xffe88c82);
+	}
+
+	// 黒をクリックしたら
+	public void onClickGreen(View v)
+	{
+		allButtonImageUnselected();
+		greenButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_selected_alpha));
+		drawSurfaceView.setColor(0xff78bf96, STROKE_WIDTH);
+		colorPickerFrame.setBackgroundColor(0xff78bf96);
+	}
+
+	// 黒をクリックしたら
+	public void onClickBlue(View v)
+	{
+		allButtonImageUnselected();
+		blueButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_selected_alpha));
+		drawSurfaceView.setColor(0xff76b3db, STROKE_WIDTH);
+		colorPickerFrame.setBackgroundColor(0xff76b3db);
 	}
 
 	// キャンバスをクリアする

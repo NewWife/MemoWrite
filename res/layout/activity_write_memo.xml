@@ -21,33 +21,85 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="#FF000000" >
+        android:background="#FF000000"
+        android:scaleX="0.5"
+        android:scaleY="0.5" >
 
         <Button
             android:id="@+id/color_picker_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:background="@drawable/hsv"
-            android:onClick="onClickColorPicker" />
+            android:onClick="onClickColorPicker"
+            android:padding="10dp" />
     </FrameLayout>
 
     <Button
-        android:id="@+id/eraser_button"
+        android:id="@+id/black_color_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/color_picker_frame"
-        android:background="@android:drawable/radiobutton_off_background"
-        android:onClick="onClickEraser" />
+        android:background="@drawable/black_selected_alpha"
+        android:onClick="onClickBlack"
+        android:scaleX="0.5"
+        android:scaleY="0.5" />
+
+    <Button
+        android:id="@+id/red_color_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/black_color_button"
+        android:background="@drawable/red_unselected_alpha"
+        android:onClick="onClickRed"
+        android:scaleX="0.5"
+        android:scaleY="0.5" />
+
+    <Button
+        android:id="@+id/green_color_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/red_color_button"
+        android:background="@drawable/green_unselected_alpha"
+        android:onClick="onClickGreen"
+        android:scaleX="0.5"
+        android:scaleY="0.5" />
+
+    <Button
+        android:id="@+id/blue_color_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/green_color_button"
+        android:background="@drawable/blue_unselected_alpha"
+        android:onClick="onClickBlue"
+        android:scaleX="0.5"
+        android:scaleY="0.5" />
+
+    <FrameLayout
+        android:id="@+id/eraser_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/blue_color_button" >
+
+        <Button
+            android:id="@+id/eraser_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/memo_eraser"
+            android:onClick="onClickEraser" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/clear_canvas_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/eraser_button"
-        android:background="@android:drawable/ic_menu_delete"
+        android:layout_toRightOf="@id/eraser_frame"
+        android:background="@drawable/memo_trashbox"
         android:onClick="onClickClearCanvas" />
 
     <Button
